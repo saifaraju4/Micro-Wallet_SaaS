@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+app:
+image: php:8.2-cli
+volumes:
+- .:/app
+working_dir: /app
+command: php -S 0.0.0.0:8080
+ports:
+- "8080:8080"
+depends_on:
+- db
+
+
+db:
+image: mysql:8.0
+environment:
+MYSQL_DATABASE: micro_wallet
+MYSQL_USER: wallet
+MYSQL_PASSWORD: wallet
+MYSQL_ROOT_PASSWORD: root
+ports:
+- "3306:3306"
